@@ -1,5 +1,7 @@
 package com.pipeline;
 
+import com.pipeline.instructions.Instruction;
+import com.pipeline.util.BranchPredictor;
 import com.pipeline.util.Data;
 import com.pipeline.util.Register;
 
@@ -12,20 +14,18 @@ public class Simulator {
     private static final int DATA_NUM = 32;
     private static final int BRANCH_PRED_NUM = 100;
 
-
+    private Instruction[] instrArray;
     private Register[] regArray;
     private Data[] dataArray;
+    private BranchPredictor[] branchPredArray;
 
     /**
      * Constructor that handles setting up the pipeline and the registers and instructions
      */
-    public Simulator(){
+    public Simulator() {
         //set up register and memory array
         regArray = setUpArray(new Register[REG_NUM], Register::new);
         dataArray = setUpArray(new Data[DATA_NUM], Data::new);
-
-
-
 
 
     }
@@ -34,14 +34,22 @@ public class Simulator {
     /**
      * Constructor that handles setting up the pipeline and the registers and instructions
      *
-     * @param array array to fill with brand new items
+     * @param array       array to fill with brand new items
      * @param constructor constructor method passed in
      */
-    private static <T> T[] setUpArray (T[] array, Supplier<T> constructor){
-        for(int i = 0; i < array.length; ++i){
+    private static <T> T[] setUpArray(T[] array, Supplier<T> constructor) {
+        for (int i = 0; i < array.length; ++i) {
             array[i] = constructor.get();
         }
         return array;
+    }
+
+    public void risingClockCycle() {
+
+    }
+
+    public void fallingClockCycle() {
+
     }
 
     public Register[] getRegArray() {
@@ -50,5 +58,13 @@ public class Simulator {
 
     public Data[] getDataArray() {
         return dataArray;
+    }
+
+    public Instruction[] getInstrArray() {
+        return instrArray;
+    }
+
+    public BranchPredictor[] getBranchPredArray() {
+        return branchPredArray;
     }
 }
