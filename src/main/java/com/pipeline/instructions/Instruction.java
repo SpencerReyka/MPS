@@ -12,6 +12,9 @@ public class Instruction {
     private int immediate;
     private int branchTar;
 
+    public Instruction(int signedint){
+        this.instr = signedint;
+    }
 
     public int getInstr() {
         return instr;
