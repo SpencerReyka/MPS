@@ -1,4 +1,4 @@
-package com.pipeline.util;
+package com.util;
 
 public class LineByLineReader {
 }
