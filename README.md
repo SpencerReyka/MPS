@@ -8,7 +8,7 @@ Trying to simulate each significant component with objects, and verify the imple
 
 Each instruction is represented by a common Instruction object, so if a certain instruction doesn't use certain fields (shamt for I- and J-types, or immediate for R-types), it is up to the individual component to figure that out. 
 
-![alt text](https://imgur.com/a/eB805N7)
+![Instruction Decode](https://i.imgur.com/Wc5iPNN.png)
 
 
 # Reseting Commit History 
