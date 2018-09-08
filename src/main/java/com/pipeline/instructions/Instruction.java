@@ -5,89 +5,85 @@ import com.pipeline.util.Register;
 public class Instruction {
     private int instr;
     private String type;
+    private int opCode;
     private int rs;
     private int rt;
     private int rd;
     private int tarReg;
+    private int shamt;
+    private int funct;
     private int immediate;
     private int branchTar;
 
-    public Instruction(int signedint){
+    public Instruction(int signedint) {
         this.instr = signedint;
+        this.opCode = (signedint >> 26);
+        this.rs = (signedint >> 21) & 0x1F;
+        this.rt = (signedint >> 16) & 0x1F;
+        this.rd = (signedint >> 11) & 0x1F;
+        this.shamt = (signedint >> 6) & 0x1F;
+        this.funct = (signedint) & 0x3F;
+        this.immediate = (signedint) & 0xFFFF;
+        this.branchTar = (signedint) & 0x3FFFFFF;
     }
+
+    public void deepCopyFrom(Instruction instrToCopyFrom) {
+        instr = instrToCopyFrom.getInstr();
+        type = instrToCopyFrom.getType();
+        opCode = instrToCopyFrom.getOpCode();
+        rs = instrToCopyFrom.getRs();
+        rt = instrToCopyFrom.getRs();
+        rd = instrToCopyFrom.getRd();
+        tarReg = instrToCopyFrom.getTarReg();
+        shamt = instrToCopyFrom.getShamt();
+        funct = instrToCopyFrom.getFunct();
+        immediate = instrToCopyFrom.getImmediate();
+        branchTar = instrToCopyFrom.getImmediate();
+    }
+
+    //TODO Put these in order
 
     public int getInstr() {
         return instr;
-    }
-
-    public void setInstr(int instr) {
-        this.instr = instr;
     }
 
     public String getType() {
         return type;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public int getRs() {
         return rs;
-    }
-
-    public void setRs(int rs) {
-        this.rs = rs;
     }
 
     public int getRt() {
         return rt;
     }
 
-    public void setRt(int rt) {
-        this.rt = rt;
-    }
-
     public int getRd() {
         return rd;
-    }
-
-    public void setRd(int rd) {
-        this.rd = rd;
     }
 
     public int getTarReg() {
         return tarReg;
     }
 
-    public void setTarReg(int tarReg) {
-        this.tarReg = tarReg;
-    }
-
     public int getImmediate() {
         return immediate;
-    }
-
-    public void setImmediate(int immediate) {
-        this.immediate = immediate;
     }
 
     public int getBranchTar() {
         return branchTar;
     }
 
-    public void setBranchTar(int branchTar) {
-        this.branchTar = branchTar;
+    public int getOpCode() {
+        return opCode;
     }
 
-    public void deepCopyFrom(Instruction instrToCopyFrom) {
-        instr = instrToCopyFrom.getInstr();
-        type = instrToCopyFrom.getType();
-        rs = instrToCopyFrom.getRs();
-        rt = instrToCopyFrom.getRs();
-        rd = instrToCopyFrom.getRd();
-        tarReg = instrToCopyFrom.getTarReg();
-        immediate = instrToCopyFrom.getImmediate();
-        branchTar = instrToCopyFrom.getImmediate();
+    public int getShamt() {
+        return shamt;
+    }
+
+    public int getFunct() {
+        return funct;
     }
 }
