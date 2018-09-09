@@ -3,6 +3,9 @@ package com.pipeline.instructions;
 import org.junit.Assert;
 import org.junit.Test;
 //TODO add full documentation
+
+//TODO just start at R instru maybe
+//TODO make list of simple instructions to start at: add sub lw sw addi ori subi
 public class InstructionTest {
 
     /**
@@ -35,7 +38,7 @@ public class InstructionTest {
         Instruction instrToCopy = new Instruction(0);
         Instruction instrToChange = new Instruction(0xFFFFFFFF);
 
-        Assert.assertNotEquals(instrToCopy.getBranchTar(), instrToChange.getBranchTar());
+        Assert.assertNotEquals(instrToCopy.getAddress(), instrToChange.getAddress());
         Assert.assertNotEquals(instrToCopy.getInstr(), instrToChange.getInstr());
         Assert.assertNotEquals(instrToCopy.getImmediate(), instrToChange.getImmediate());
         Assert.assertNotEquals(instrToCopy.getRt(), instrToChange.getRt());
@@ -44,7 +47,7 @@ public class InstructionTest {
 
         instrToChange.deepCopyFrom(instrToCopy);
 
-        Assert.assertEquals(instrToCopy.getBranchTar(), instrToChange.getBranchTar());
+        Assert.assertEquals(instrToCopy.getAddress(), instrToChange.getAddress());
         Assert.assertEquals(instrToCopy.getInstr(), instrToChange.getInstr());
         Assert.assertEquals(instrToCopy.getImmediate(), instrToChange.getImmediate());
         Assert.assertEquals(instrToCopy.getRt(), instrToChange.getRt());
@@ -121,6 +124,68 @@ public class InstructionTest {
         Assert.assertEquals(sut.getRd(), 4);
         Assert.assertEquals(sut.getShamt(), 0);
         Assert.assertEquals(sut.getFunct(), 32);
+
+    }
+
+
+    /**
+     * Testing L Type with format:
+     *  opcode: 35
+     *  rs:     6
+     *  rt:     5
+     *  address:8
+     *
+     *  translation: lw $5, 8($6)
+     */
+    @Test
+    public void TestLoadWordParsing1() {
+        Instruction sut = new Instruction(-1933246456);
+
+        Assert.assertEquals(sut.getOpCode(), 35);
+        Assert.assertEquals(sut.getRs(), 6);
+        Assert.assertEquals(sut.getRt(), 5);
+        Assert.assertEquals(sut.getImmediate(), 8);
+
+    }
+
+    /**
+     * Testing L Type with format:
+     *  opcode: 35
+     *  rs:     16
+     *  rt:     8
+     *  address:4
+     *
+     *  translation: lw $, 4($)
+     */
+    @Test
+    public void TestLoadWordParsing2() {
+        Instruction sut = new Instruction(-1912078332);
+
+
+        Assert.assertEquals(sut.getOpCode(), 35);
+        Assert.assertEquals(sut.getRs(), 16);
+        Assert.assertEquals(sut.getRt(), 8);
+        Assert.assertEquals(sut.getImmediate(), 4);
+
+    }
+
+    /**
+     * Testing L Type with format:
+     *  opcode: 35
+     *  rs:     2
+     *  rt:     7
+     *  address:4
+     *
+     *  translation: bne $2, 4($7)
+     */
+    @Test
+    public void TestBranchNotEqual1() {
+        Instruction sut = new Instruction(273088516);
+
+        Assert.assertEquals(sut.getOpCode(), 4);
+        Assert.assertEquals(sut.getRs(), 2);
+        Assert.assertEquals(sut.getRt(), 7);
+        Assert.assertEquals(sut.getImmediate(), 4);
 
     }
 }

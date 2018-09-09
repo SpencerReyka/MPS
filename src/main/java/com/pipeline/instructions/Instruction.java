@@ -13,18 +13,18 @@ public class Instruction {
     private int shamt;
     private int funct;
     private int immediate;
-    private int branchTar;
+    private int address;
 
     public Instruction(int signedint) {
         this.instr = signedint;
-        this.opCode = (signedint >> 26);
-        this.rs = (signedint >> 21) & 0x1F;
-        this.rt = (signedint >> 16) & 0x1F;
-        this.rd = (signedint >> 11) & 0x1F;
-        this.shamt = (signedint >> 6) & 0x1F;
+        this.opCode = (signedint >>> 26);
+        this.rs = (signedint >>> 21) & 0x1F;
+        this.rt = (signedint >>> 16) & 0x1F;
+        this.rd = (signedint >>> 11) & 0x1F;
+        this.shamt = (signedint >>> 6) & 0x1F;
         this.funct = (signedint) & 0x3F;
         this.immediate = (signedint) & 0xFFFF;
-        this.branchTar = (signedint) & 0x3FFFFFF;
+        this.address = (signedint) & 0x3FFFFFF;
     }
 
     public void deepCopyFrom(Instruction instrToCopyFrom) {
@@ -38,7 +38,7 @@ public class Instruction {
         shamt = instrToCopyFrom.getShamt();
         funct = instrToCopyFrom.getFunct();
         immediate = instrToCopyFrom.getImmediate();
-        branchTar = instrToCopyFrom.getImmediate();
+        address = instrToCopyFrom.getImmediate();
     }
 
     //TODO Put these in order
@@ -71,8 +71,8 @@ public class Instruction {
         return immediate;
     }
 
-    public int getBranchTar() {
-        return branchTar;
+    public int getAddress() {
+        return address;
     }
 
     public int getOpCode() {
