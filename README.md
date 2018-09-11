@@ -11,6 +11,12 @@ Each instruction is represented by a common Instruction object, so if a certain 
 ![Instruction Decode](https://i.imgur.com/Wc5iPNN.png)
 
 
+# Registers
+
+MIPS assembly language employs a convention for use of registers. This convention is not enforced by the assembler or the hardware, but it must be followed by all MIPS assembly language programmers in order to avoid unexpected behavior of modules written by different people.
+
+![Register Convention](https://i.imgur.com/ItzI6uJ.png)
+
 # Reseting Commit History 
 To reset the commit history username or user email, check https://help.github.com/articles/changing-author-info/ 
 Make sure to set the correct user name after for future commits.
