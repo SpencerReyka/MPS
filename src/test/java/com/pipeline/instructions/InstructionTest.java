@@ -10,14 +10,14 @@ public class InstructionTest {
 
     /**
      * Testing Zero with format:
-     *  opcode: 0
-     *  rs:     0
-     *  rt:     0
-     *  rd:     0
-     *  shamt:  0
-     *  funct:  0
-     *
-     *  translation: Zero Test, no real translation
+     * opcode: 0
+     * rs:     0
+     * rt:     0
+     * rd:     0
+     * shamt:  0
+     * funct:  0
+     * <p>
+     * translation: Zero Test, no real translation
      */
     @Test
     public void SimpleParseOf0() {
@@ -56,127 +56,13 @@ public class InstructionTest {
     }
 
     /**
-     * Testing R Type with format:
-     *  opcode: 0
-     *  rs:     8
-     *  rt:     9
-     *  rd:     10
-     *  shamt:  0
-     *  funct:  32
-     *
-     *  translation: add $10, $8, $9
-     */
-    @Test
-    public void TestRTypeParsing1() {
-        Instruction sut = new Instruction(17387552);
-
-        Assert.assertEquals(sut.getOpCode(), 0);
-        Assert.assertEquals(sut.getRs(), 8);
-        Assert.assertEquals(sut.getRt(), 9);
-        Assert.assertEquals(sut.getRd(), 10);
-        Assert.assertEquals(sut.getShamt(), 0);
-        Assert.assertEquals(sut.getFunct(), 32);
-
-    }
-
-    /**
-     * Testing R Type with format:
-     *  opcode: 0
-     *  rs:     8
-     *  rt:     9
-     *  rd:     10
-     *  shamt:  0
-     *  funct:  34
-     *
-     *  translation: sub $10, $8, $9
-     */
-    @Test
-    public void TestRTypeParsing2() {
-        Instruction sut = new Instruction(17387554);
-
-        Assert.assertEquals(sut.getOpCode(), 0);
-        Assert.assertEquals(sut.getRs(), 8);
-        Assert.assertEquals(sut.getRt(), 9);
-        Assert.assertEquals(sut.getRd(), 10);
-        Assert.assertEquals(sut.getShamt(), 0);
-        Assert.assertEquals(sut.getFunct(), 34);
-
-    }
-
-    /**
-     * Testing R Type with format:
-     *  opcode: 0
-     *  rs:     3
-     *  rt:     2
-     *  rd:     4
-     *  shamt:  0
-     *  funct:  32
-     *
-     *  translation: add $4, $3, $2
-     */
-    @Test
-    public void TestRTypeParsing3() {
-        Instruction sut = new Instruction(6430752);
-
-        Assert.assertEquals(sut.getOpCode(), 0);
-        Assert.assertEquals(sut.getRs(), 3);
-        Assert.assertEquals(sut.getRt(), 2);
-        Assert.assertEquals(sut.getRd(), 4);
-        Assert.assertEquals(sut.getShamt(), 0);
-        Assert.assertEquals(sut.getFunct(), 32);
-
-    }
-
-
-    /**
      * Testing L Type with format:
-     *  opcode: 35
-     *  rs:     6
-     *  rt:     5
-     *  address:8
-     *
-     *  translation: lw $5, 8($6)
-     */
-    @Test
-    public void TestLoadWordParsing1() {
-        Instruction sut = new Instruction(-1933246456);
-
-        Assert.assertEquals(sut.getOpCode(), 35);
-        Assert.assertEquals(sut.getRs(), 6);
-        Assert.assertEquals(sut.getRt(), 5);
-        Assert.assertEquals(sut.getImmediate(), 8);
-
-    }
-
-    /**
-     * Testing L Type with format:
-     *  opcode: 35
-     *  rs:     16
-     *  rt:     8
-     *  address:4
-     *
-     *  translation: lw $, 4($)
-     */
-    @Test
-    public void TestLoadWordParsing2() {
-        Instruction sut = new Instruction(-1912078332);
-
-
-        Assert.assertEquals(sut.getOpCode(), 35);
-        Assert.assertEquals(sut.getRs(), 16);
-        Assert.assertEquals(sut.getRt(), 8);
-        Assert.assertEquals(sut.getImmediate(), 4);
-
-    }
-
-    /**
-     * Testing L Type with format:
-     *  opcode: 35
-     *  rs:     2
-     *  rt:     7
-     *  address:4
-     *
-     *  translation: bne $2, 4($7)
+     * opcode: 35
+     * rs:     2
+     * rt:     7
+     * address:4
+     * <p>
+     * translation: bne $2, 4($7)
      */
     @Test
     public void TestBranchNotEqual1() {
