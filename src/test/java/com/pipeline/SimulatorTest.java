@@ -18,6 +18,7 @@ public class SimulatorTest {
         Simulator sim = new Simulator();
         Assert.assertNull(sim.getBranchPredArray());
     }
+
     @Test
     public void TestLengthOfMemoryAtInstantiation() {
         Assert.assertEquals(SUT.getDataArray().length, 32);
